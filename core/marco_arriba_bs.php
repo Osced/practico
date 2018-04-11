@@ -95,7 +95,7 @@
         //Evita el cargue si se trata de una opcion especifica
         if ($PCO_Accion!="PCOMOD_CargarPcoder") {
     ?>
-        <link href="inc/bootstrap/css/sb-admin-2.css" rel="stylesheet">
+        <link href="inc/bootstrap/css/sb-admin.min.css" rel="stylesheet">
         <link href="inc/bootstrap/css/practico.min.css" rel="stylesheet">
     <?php 
         }

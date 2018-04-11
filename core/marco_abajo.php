@@ -168,7 +168,7 @@
     <script src="inc/summernote/lang/summernote-<?php echo $IdiomaPredeterminado; ?>-<?php echo strtoupper($IdiomaPredeterminado); ?>.js"></script>
 
     <!-- JavaScript Personalizado del tema -->
-    <script src="inc/bootstrap/js/sb-admin-2.js"></script>
+    <script src="inc/bootstrap/js/sb-admin.min.js"></script>
     <script src="inc/bootstrap/js/practico.min.js?<?php echo filemtime('inc/bootstrap/js/practico.min.js'); ?>"></script>
     <!-- Chat -->
     <script type="text/javascript" src="inc/chat/js/chat.js"></script>

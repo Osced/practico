@@ -36,6 +36,7 @@
 
 		ClaseColumnas - Clases para la definicion del tamano del control en formato de columnas bootstrap.  Ej:  col-lg-3 col-md-6
 		EstiloPanel - Define el color del control bootstrap.  [primary | green | red | default | yellow | info | success | danger]
+		EstiloTexto - Define color del texto del control. [white|dark]
 		ClaseIconoFA - Clase con el icono en notacion FontAwesome para ser agregado al cuadro. Acepta modificadores FA.  Ej.  fa-table fa-4x fa-spin
 		Titulo - Texto a imprimir en formato grande sobre el cuadro.  Se recomienda una sola palabra.
 		SubTitulo - Texto corto explicativo del cuadro a ser impreso debajo del titulo en letra pequena.
@@ -44,34 +45,35 @@
 
 	Salida:
 		Impresion del codigo HTML correspondiente
+	
+	Otras clases disponibles:  card-title  card-header
+	Guia de formato:  https://blackrockdigital.github.io/startbootstrap-sb-admin/
 */
-function PCO_ImprimirPanelSimpleDashboard($ClaseColumnas,$EstiloPanel,$ClaseIconoFA,$Titulo,$SubTitulo,$EnlaceTexto,$EnlaceURL)
+function PCO_ImprimirPanelSimpleDashboard($ClaseColumnas,$EstiloPanel,$EstiloTexto,$ClaseIconoFA,$Titulo,$SubTitulo,$EnlaceTexto,$EnlaceURL)
     {
         $SalidaFuncion="
             <div class='$ClaseColumnas'>
-                <div class='panel panel-$EstiloPanel'>
-                    <div class='panel-heading'>
-                        <div class='row'>
-                            <div class='col-xs-3'>
-                                <i class='fa $ClaseIconoFA'></i>
-                            </div>
-                            <div class='col-xs-9 text-right'>
-                                <div class='huge'>
-                                    $Titulo
+                <div class='card text-$EstiloTexto bg-$EstiloPanel o-hidden'> <!-- Overflow hidden para contenidos que salgan del div -->
+                    <div class='card-body'>
+                        <div class='card-body-icon'>
+                            <i class='fa $ClaseIconoFA'></i>
+                        </div>
+                        <div class='card-text'>
+                            <div class='float-left'>
+                                <div class='fa-2x'>
+                                    <b>$Titulo</b>
                                 </div>
                                 <div>$SubTitulo</div>
                             </div>
                         </div>
                     </div>
-                    <a href='$EnlaceURL'>
-                        <div class='panel-footer'>
-                            <span class='pull-left'>$EnlaceTexto</span>
-                            <span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span>
-                            <div class='clearfix'></div>
-                        </div>
+                    <a href='$EnlaceURL' class='card-footer text-$EstiloTexto small'>
+                        <span class='float-left'>$EnlaceTexto</span>
+                        <span class='float-right'><i class='fa fa-arrow-circle-right'></i></span>
                     </a>
-                </div>
-            </div>";
+                </div><br>
+            </div> <!--Fin columna-->
+            ";
         return $SalidaFuncion;
     }
 
@@ -3932,7 +3934,7 @@ function PCO_VentanaLogin()
 /* ################################################################## */
 /* ################################################################## */
 /*
-    Procedure: abrir_ventana
+    Procedure: PCO_AbrirVentana
     Abre los espacios de trabajo dinamicos sobre el contenedor principal donde se despliega informacion
 
     Variables de entrada:
@@ -3949,15 +3951,43 @@ function PCO_VentanaLogin()
     Ver tambien:
     <cerrar_ventana>
 */
-function abrir_ventana($titulo,$tipo_panel="panel-default",$css_personalizado='',$barra_herramientas='')
+    //Funcion para compatibilidad hacia atras.  Desaparecera en la version 18.9
+    function abrir_ventana($titulo,$tipo_panel="panel-default",$css_personalizado='',$barra_herramientas='')
+    { echo "ERROR: Llamado a funcion obsoleta del framework abrir_ventana().  En su lugar utilice PCO_AbrirVentana() "; }
+function PCO_AbrirVentana($titulo,$tipo_panel="panel-default",$css_personalizado='',$barra_herramientas='',$EstiloTexto="white")
     {
+        $SalidaFuncion="
+            <div class='$ClaseColumnas'>
+                <div class='card text-$EstiloTexto bg-$EstiloPanel o-hidden'> <!-- Overflow hidden para contenidos que salgan del div -->
+                    <div class='card-body'>
+                        <div class='card-body-icon'>
+                            <i class='fa $ClaseIconoFA'></i>
+                        </div>
+                        <div class='card-textooo'>
+                            <div class='float-left'>
+                                <div class='fa-2x'>
+                                    <b>$Titulo</b>
+                                </div>
+                                <div>$SubTitulo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='$EnlaceURL' class='card-footer text-$EstiloTexto small'>
+                        <span class='float-left'>$EnlaceTexto</span>
+                        <span class='float-right'><i class='fa fa-arrow-circle-right'></i></span>
+                    </a>
+                </div><br>
+            </div> <!--Fin columna-->
+            ";
+
+
         echo '
-            <div class="panel '.$tipo_panel.'" style="'.$css_personalizado.'">
-            <div class="panel-heading">'.$titulo;
+            <div class="card '.$tipo_panel.' text-'.$EstiloTexto.' bg-'.$tipo_panel.'" style="'.$css_personalizado.'">
+            <div class="card-header">'.$titulo;
         if ($barra_herramientas!='')
             echo $barra_herramientas;
         echo '</div>
-            <div class="panel-body">';
+            <div class="card-body">';
     }
 
 
@@ -3965,13 +3995,16 @@ function abrir_ventana($titulo,$tipo_panel="panel-default",$css_personalizado=''
 /* ################################################################## */
 /* ################################################################## */
 /*
-	Function: cerrar_ventana
+	Function: PCO_CerrarVentana
 	Cierra los espacios de trabajo dinamicos generados por <abrir_ventana>	
 
 	Ver tambien:
 	<abrir_ventana>	
 */
-function cerrar_ventana()
+    //Funcion para compatibilidad hacia atras.  Desaparecera en la version 18.9
+    function cerrar_ventana()
+    { echo "ERROR: Llamado a funcion obsoleta del framework cerrar_ventana().  En su lugar utilice PCO_CerrarVentana() "; }
+function PCO_CerrarVentana()
     {
         echo '
           </div>  <!-- CIERRA panel-body -->
