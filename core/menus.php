@@ -149,7 +149,7 @@ if ($PCO_Accion=="actualizar_menu")
 */
 if ($PCO_Accion=="detalles_menu")
 	{
-		abrir_ventana($MULTILANG_MnuTitEditar,'panel-danger');
+		PCO_AbrirVentana($MULTILANG_MnuTitEditar,'danger');
 
 		// Busca detalles del item
 		$resultado=PCO_EjecutarSQL("SELECT id,".$ListaCamposSinID_menu." FROM ".$TablasCore."menu WHERE id=? ","$id");
@@ -310,7 +310,7 @@ if ($PCO_Accion=="detalles_menu")
             </form>
 
  <?php
-		cerrar_ventana();
+		PCO_CerrarVentana();
 	}
 
 
@@ -421,7 +421,7 @@ if ($PCO_Accion=="administrar_menu")
 	{
 		$PCO_Accion=escapar_contenido($PCO_Accion); //Limpia cadena para evitar XSS
 		echo '<div align="center"><br>';
-		abrir_ventana($MULTILANG_MnuAdmin, 'panel-primary');
+		PCO_AbrirVentana($MULTILANG_MnuAdmin);
         
         selector_iconos_awesome();
         selector_objetos_menu();
@@ -628,7 +628,7 @@ if ($PCO_Accion=="administrar_menu")
 
 
 		 <?php
-		 				cerrar_ventana();
+		 				PCO_CerrarVentana();
 		 		}
 
 
@@ -900,7 +900,7 @@ if ($PCO_Accion=="administrar_menu")
 					//Crea la seccion en el acordeon
 					$seccion_menu_activa=$registro["seccion"];
 					$conteo_opciones=$registro["conteo"];
-					abrir_ventana($seccion_menu_activa.' ('.$conteo_opciones.')', 'panel-primary');
+					PCO_AbrirVentana($seccion_menu_activa.' ('.$conteo_opciones.')');
 					// Busca las opciones dentro de la seccion
 
 					// Si el usuario es diferente al administrador agrega condiciones al query
@@ -945,7 +945,7 @@ if ($PCO_Accion=="administrar_menu")
 								echo '<img src="'.$registro_opciones_acordeon["imagen"].'" border="0" />';
                             echo '</a>&nbsp;';
 						}
-					cerrar_ventana();
+					PCO_CerrarVentana();
 				}
 			echo '</div>';
 

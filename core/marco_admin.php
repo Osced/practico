@@ -155,7 +155,7 @@ function ObtenerEntradas_GitHub($ID_Usuario="",$Cantidad=5)
             //Despliegue de resultados
 
             //Abre un contenedor (Opcional)
-            abrir_ventana('Ultimas '.count($EntradasGitHub).' Entradas ATOM', 'panel-primary');
+            PCO_AbrirVentana('Ultimas '.count($EntradasGitHub).' Entradas ATOM');
 
             //Encabezados de la tabla
             echo '
@@ -180,7 +180,7 @@ function ObtenerEntradas_GitHub($ID_Usuario="",$Cantidad=5)
             echo '  </tbody>
                 </table>';
             //Cierra el contenedor (Obligatorio si se ha abierto alguno)
-            cerrar_ventana();
+            PCO_CerrarVentana();
 
         }
 

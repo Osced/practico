@@ -33,7 +33,7 @@
 */
 if ($PCO_Accion=="actualizar_practico")
 	{
-		abrir_ventana($NombreRAD.' - '.$MULTILANG_Actualizacion,'panel-info');
+		PCO_AbrirVentana($NombreRAD.' - '.$MULTILANG_Actualizacion,'info');
 ?>
 
     <ul class="nav nav-tabs nav-justified">
@@ -120,7 +120,7 @@ if ($PCO_Accion=="actualizar_practico")
 		abrir_barra_estado();
 		echo '<a class="btn btn-warning btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_Cancelar.'</a>';
 		cerrar_barra_estado();
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -144,7 +144,7 @@ if ($PCO_Accion=="actualizar_practico")
 */
 if ($PCO_Accion=="cargar_archivo")
 	{
-		abrir_ventana($MULTILANG_Adjuntando, 'panel-primary');
+		PCO_AbrirVentana($MULTILANG_Adjuntando);
 
 		//datos del arhivo
 		$mensaje_error="";
@@ -189,7 +189,7 @@ if ($PCO_Accion=="cargar_archivo")
 
 		echo '<br><a class="btn btn-default btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_Cancelar.'</a>';
 
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -213,7 +213,7 @@ if ($PCO_Accion=="cargar_archivo")
 */
 if ($PCO_Accion=="analizar_parche")
 	{
-		abrir_ventana($MULTILANG_ErrorDescomprimiendo.' '.$archivo_cargado, 'panel-info');
+		PCO_AbrirVentana($MULTILANG_ErrorDescomprimiendo.' '.$archivo_cargado, 'info');
 
 		echo '
 		<form action="'.$ArchivoCORE.'" method="post">
@@ -342,7 +342,7 @@ if ($PCO_Accion=="analizar_parche")
 		echo '</center>';
 		echo '<br><a class="btn btn-default btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_Cancelar.'</a>';
 
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -375,7 +375,7 @@ if ($PCO_Accion=="aplicar_parche")
 				die();
 			}
 
-		abrir_ventana($MULTILANG_Aplicando.': '.$archivo_cargado, 'panel-primary');
+		PCO_AbrirVentana($MULTILANG_Aplicando.': '.$archivo_cargado);
 		echo '<table class="table table-unbordered table-condensed"><tr><td>
 		<u>'.$MULTILANG_ActDesde.' '.$version_actual.' ---> '.$version_final.':</u><br><br>';
 		$mensaje_error="";
@@ -473,6 +473,6 @@ if ($PCO_Accion=="aplicar_parche")
 		echo '</center></td></tr></table>';
 
 		echo '<br><a class="btn btn-success btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_IrEscritorio.'</a>';
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}

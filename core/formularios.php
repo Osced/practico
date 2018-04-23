@@ -1853,7 +1853,7 @@ if ($PCO_Accion=="editar_formulario")
         						<hr>
                             
                             <?php
-                    		        abrir_ventana($MULTILANG_Existentes, 'panel-primary');
+                    		        PCO_AbrirVentana($MULTILANG_Existentes, 'primary');
                     		?>
                     				<table class="table table-condensed btn-xs table-hover table-unbordered ">
                     					<thead>
@@ -1882,7 +1882,7 @@ if ($PCO_Accion=="editar_formulario")
                     					}
                     				echo '</tbody>
                                     </table>';
-                    			cerrar_ventana();
+                    			PCO_CerrarVentana();
                         }
                 ?>
                 
@@ -2831,7 +2831,7 @@ if ($PCO_Accion=="editar_formulario")
 	if ($PCO_Accion=="copiar_formulario")
 		{
 				//Presenta la ventana con informacion y enlace de descarga
-				abrir_ventana($MULTILANG_FrmTipoCopiaExporta, 'panel-primary'); ?>
+				PCO_AbrirVentana($MULTILANG_FrmTipoCopiaExporta, 'primary'); ?>
 					<div align=center>
 					<?php
 				        echo $MULTILANG_FrmCopiaFinalizada."<hr>"; 
@@ -2839,7 +2839,7 @@ if ($PCO_Accion=="editar_formulario")
 					?>
 					</div>
 				<?php
-				cerrar_ventana();
+				PCO_CerrarVentana();
 				?>
     			<div align=center>
     			<br><br>
@@ -2865,7 +2865,7 @@ if ($PCO_Accion=="definir_copia_formularios")
 			<input type="Hidden" name="formulario" value="<?php echo $formulario; ?>">
 
             <br>
-			<?php abrir_ventana($MULTILANG_FrmTipoObjeto, 'panel-primary'); ?>
+			<?php PCO_AbrirVentana($MULTILANG_FrmTipoObjeto, 'primary'); ?>
 			<h4><?php echo $MULTILANG_FrmTipoCopiaExporta; ?>: <b><?php echo $titulo_formulario; ?></b> (ID=<?php echo $formulario; ?>)</h4>
             <label for="tipo_copia_objeto"><?php echo $MULTILANG_FrmTipoCopia; ?>:</label>
             <select id="tipo_copia_objeto" name="tipo_copia_objeto" class="form-control btn-warning" >
@@ -2887,7 +2887,7 @@ if ($PCO_Accion=="definir_copia_formularios")
             </div>
 
 		<?php
-		cerrar_ventana();
+		PCO_CerrarVentana();
 	}
 
 
@@ -2908,7 +2908,7 @@ if ($PCO_Accion=="confirmar_importacion_formulario")
 	{
 		echo "<br>";
 		$mensaje_error="";
-		abrir_ventana($MULTILANG_FrmImportar.' <b>'.$archivo_cargado.'</b>', 'panel-info');
+		PCO_AbrirVentana($MULTILANG_FrmImportar.' <b>'.$archivo_cargado.'</b>', 'info');
 		if ($archivo_cargado=="")
 			$mensaje_error=$MULTILANG_ErrorTiempoEjecucion;
 		else
@@ -2943,7 +2943,7 @@ if ($PCO_Accion=="confirmar_importacion_formulario")
 			}
 		echo '</center>';
 
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -2964,7 +2964,7 @@ if ($PCO_Accion=="confirmar_importacion_formulario")
 if ($PCO_Accion=="analizar_importacion_formulario")
 	{
 		echo "<br>";
-		abrir_ventana($MULTILANG_FrmImportar.' <b>'.$archivo_cargado.'</b>', 'panel-info');
+		PCO_AbrirVentana($MULTILANG_FrmImportar.' <b>'.$archivo_cargado.'</b>', 'info');
 
 		if ($mensaje_error=="")
 			{
@@ -3052,7 +3052,7 @@ if ($PCO_Accion=="analizar_importacion_formulario")
 		echo '</center>';
 		echo '<br><a class="btn btn-default btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_Cancelar.'</a>';
 
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -3066,7 +3066,7 @@ if ($PCO_Accion=="analizar_importacion_formulario")
 if ($PCO_Accion=="importar_formulario")
 	{
 		echo "<br>";
-		abrir_ventana($NombreRAD.' - '.$MULTILANG_FrmImportar,'panel-info');
+		PCO_AbrirVentana($NombreRAD.' - '.$MULTILANG_FrmImportar,'info');
 ?>
 
     <ul class="nav nav-tabs nav-justified">
@@ -3136,7 +3136,7 @@ if ($PCO_Accion=="importar_formulario")
 		abrir_barra_estado();
 		echo '<a class="btn btn-warning btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> '.$MULTILANG_Cancelar.'</a>';
 		cerrar_barra_estado();
-		cerrar_ventana();
+		PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
 	}
 
@@ -3181,9 +3181,8 @@ function FrmAutoRun()
 <div class="row">
   <div class="col-md-4">
       
-      
-			<?php abrir_ventana($MULTILANG_FrmAgregar, 'panel-primary'); ?>
-						
+			<?php PCO_AbrirVentana($MULTILANG_FrmAgregar); ?>
+
 			<h4><?php echo $MULTILANG_FrmDetalles; ?>:</h4>
 
             <div class="form-group input-group">
@@ -3274,9 +3273,9 @@ function FrmAutoRun()
             <a class="btn btn-success btn-block" href="javascript:document.datos.submit();"><i class="fa fa-floppy-o"></i> <?php echo $MULTILANG_FrmCreaDisena; ?></a>
             <a class="btn btn-default btn-block" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> <?php echo $MULTILANG_IrEscritorio; ?></a>
 
-		<?php	cerrar_ventana();	?>
+		<?php	PCO_CerrarVentana();	?>
 
-		<?php abrir_ventana($MULTILANG_Importar."/".$MULTILANG_Exportar." ($MULTILANG_Avanzado)", 'panel-default'); ?>
+		<?php PCO_AbrirVentana($MULTILANG_Importar."/".$MULTILANG_Exportar." ($MULTILANG_Avanzado)"); ?>
             <form name="importacion" id="importacion" action="<?php echo $ArchivoCORE; ?>" method="POST">
     			<input type="Hidden" name="PCO_Accion" value="importar_formulario">
             </form>
@@ -3301,7 +3300,7 @@ function FrmAutoRun()
                     </div>
             </form>
             <a class="btn btn-primary btn-block" href="javascript:document.exportacion_masiva.submit();"><i class="fa fa-download"></i> <?php echo $MULTILANG_Exportar; ?></a>
-		<?php	cerrar_ventana();	?>
+		<?php	PCO_CerrarVentana();	?>
 
   </div>    
   <div class="col-md-8">

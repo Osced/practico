@@ -318,9 +318,9 @@ if ($PCO_Accion=="eliminar_replica")
 		*/
 if ($PCO_Accion=="detalles_replicacion")
 	{
-		abrir_ventana($MULTILANG_ReplicaTitulo,'panel-primary');
+		PCO_AbrirVentana($MULTILANG_ReplicaTitulo);
 		FormatoReplicacion($IDRegistroReplica);
-        cerrar_ventana();
+        PCO_CerrarVentana();
     } //Fin detalles_monitoreo
 
 
@@ -343,7 +343,7 @@ if ($PCO_Accion=="detalles_replicacion")
 if ($PCO_Accion=="administrar_replicacion")
 	{
 		$PCO_Accion=escapar_contenido($PCO_Accion); //Limpia cadena para evitar XSS
-		abrir_ventana($MULTILANG_ReplicaTitulo,'panel-primary');
+		PCO_AbrirVentana($MULTILANG_ReplicaTitulo,'danger');
 		
 		FormatoReplicacion();
 		
@@ -449,6 +449,6 @@ if ($PCO_Accion=="administrar_replicacion")
 					}
 
 
-        cerrar_ventana();
+        PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
     } //Fin administrar_replicacion

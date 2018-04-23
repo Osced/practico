@@ -1208,9 +1208,11 @@ function FormatoMonitor($IDRegistroMonitor)
 */
 if ($PCO_Accion=="detalles_monitoreo")
 	{
-		abrir_ventana($MULTILANG_MonConfig,'panel-primary');
+	    				    //Titulo,FondoTituloCard,CSSPersonalizado,BarraHerramientas,EstiloTextoCard,EstiloFondoCard
+
+		PCO_AbrirVentana($MULTILANG_MonConfig);
 		FormatoMonitor($IDRegistroMonitor);
-        cerrar_ventana();
+        PCO_CerrarVentana();
     } //Fin detalles_monitoreo
 
 
@@ -1233,7 +1235,7 @@ if ($PCO_Accion=="detalles_monitoreo")
 if ($PCO_Accion=="administrar_monitoreo")
 	{
 		$PCO_Accion=escapar_contenido($PCO_Accion); //Limpia cadena para evitar XSS
-		abrir_ventana($MULTILANG_MonConfig,'panel-primary');
+		PCO_AbrirVentana($MULTILANG_MonConfig);
 		
 		FormatoMonitor();
 ?>
@@ -1289,7 +1291,7 @@ if ($PCO_Accion=="administrar_monitoreo")
                 </tbody>
                 </table>';
 
-        cerrar_ventana();
+        PCO_CerrarVentana();
         $VerNavegacionIzquierdaResponsive=1; //Habilita la barra de navegacion izquierda por defecto
     } //Fin administrar_monitoreo
 

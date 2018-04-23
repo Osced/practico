@@ -35,7 +35,7 @@
 	Variables de entrada:
 
 		ClaseColumnas - Clases para la definicion del tamano del control en formato de columnas bootstrap.  Ej:  col-lg-3 col-md-6
-		EstiloPanel - Define el color del control bootstrap.  [primary | green | red | default | yellow | info | success | danger]
+		EstiloPanel - Define el color del control bootstrap.  [primary | secondary | success | danger | warning | info | light | dark | white]
 		EstiloTexto - Define color del texto del control. [white|dark]
 		ClaseIconoFA - Clase con el icono en notacion FontAwesome para ser agregado al cuadro. Acepta modificadores FA.  Ej.  fa-table fa-4x fa-spin
 		Titulo - Texto a imprimir en formato grande sobre el cuadro.  Se recomienda una sola palabra.
@@ -3741,13 +3741,13 @@ function PCO_VentanaLogin()
 
                 <!--Login Estandar-->
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 offset-md-0 offset-sm-4 offset-md-4 offset-lg-4">
                     <div id="EnfasisLoginZoom" class="EnfasisLoginZoom">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><?php echo $MULTILANG_TituloLogin; ?></h3>
-                            </div>
-                            <div align=center class="panel-body btn-xs">
+                        
+                        <?php PCO_AbrirVentana($MULTILANG_TituloLogin); ?>
+
+
+                            <div align=center class="card-body btn-xs">
     
                                     <form role="form" name="login_usuario" method="POST" action="<?php echo $ArchivoCORE; ?>" style="margin-top: 0px; margin-bottom: 0px;" onsubmit="if (document.login_usuario.captcha.value=='' || document.login_usuario.uid.value=='' || document.login_usuario.clave.value=='') { alert('Debe diligenciar los valores necesarios (Usuario, Clave y Codigo de seguridad).'); return false; }">
                                     <input type="Hidden" name="PCO_Accion" value="Iniciar_login">
@@ -3755,11 +3755,11 @@ function PCO_VentanaLogin()
                                             <img name="img_login" id="img_login" width="100%" style="max-width:232px; max-height:160px;" src="img/practico_login.png?<?php echo filemtime('img/practico_login.png'); ?>" alt="" border="0"><br><br>
                                         </div>
                                         <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                            <span class="input-group-addon" style="display: flex; align-items: center;"><i class="fa fa-user fa-fw"></i></span>
                                             <input name="uid" value="<?php echo $AUTO_uid; ?>" type="text" class="form-control" placeholder="<?php echo $MULTILANG_Usuario; ?>">
                                         </div>
                                         <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                            <span class="input-group-addon" style="display: flex; align-items: center;"><i class="fa fa-key fa-fw"></i></span>
                                             <input name="clave" value="<?php echo $AUTO_clave; ?>" type="password" class="form-control" placeholder="<?php echo $MULTILANG_Contrasena; ?>">
                                         </div>
                                         
@@ -3917,10 +3917,15 @@ function PCO_VentanaLogin()
     										?>
                                         </div>
                                     </div>
-                                    
     
-                            <script language="JavaScript"> login_usuario.uid.focus(); </script>
-                            </div> <!-- /panel-body -->
+                                <script language="JavaScript"> login_usuario.uid.focus(); </script>
+                                </div> <!-- /panel-body -->
+                            </div>
+
+
+
+                        <?php PCO_CerrarVentana(); ?>
+
                         </div>
                     </div>  <!--FIN Class EnfasisLoginZoom -->
                     </div>  <!--FIN Class col -->
@@ -3942,52 +3947,23 @@ function PCO_VentanaLogin()
     titulo - Nombre de la ventana a visualizar en la parte superior.
     tipo_panel - Recibe el tipo de panel bootstrap a crear: 
 
-    * panel-primary,panel-success,panel-info,panel-warning,panel-danger
-    * col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-
-    * Otros asociados a clases de bootstrap
-    
     barra_herramientas - Lista de barras de herramientas a ser impresas
 
     Ver tambien:
-    <cerrar_ventana>
+    <PCO_CerrarVentana>
 */
     //Funcion para compatibilidad hacia atras.  Desaparecera en la version 18.9
-    function abrir_ventana($titulo,$tipo_panel="panel-default",$css_personalizado='',$barra_herramientas='')
+    function abrir_ventana($titulo,$tipo_panel="panel-primary",$css_personalizado='',$barra_herramientas='')
     { echo "ERROR: Llamado a funcion obsoleta del framework abrir_ventana().  En su lugar utilice PCO_AbrirVentana() "; }
-function PCO_AbrirVentana($titulo,$tipo_panel="panel-default",$css_personalizado='',$barra_herramientas='',$EstiloTexto="white")
+function PCO_AbrirVentana($titulo,$EstiloPanel="secondary",$css_personalizado='',$barra_herramientas='',$EstiloTexto="white",$FondoPanel="white")
     {
-        $SalidaFuncion="
-            <div class='$ClaseColumnas'>
-                <div class='card text-$EstiloTexto bg-$EstiloPanel o-hidden'> <!-- Overflow hidden para contenidos que salgan del div -->
-                    <div class='card-body'>
-                        <div class='card-body-icon'>
-                            <i class='fa $ClaseIconoFA'></i>
-                        </div>
-                        <div class='card-textooo'>
-                            <div class='float-left'>
-                                <div class='fa-2x'>
-                                    <b>$Titulo</b>
-                                </div>
-                                <div>$SubTitulo</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href='$EnlaceURL' class='card-footer text-$EstiloTexto small'>
-                        <span class='float-left'>$EnlaceTexto</span>
-                        <span class='float-right'><i class='fa fa-arrow-circle-right'></i></span>
-                    </a>
-                </div><br>
-            </div> <!--Fin columna-->
-            ";
-
-
         echo '
-            <div class="card '.$tipo_panel.' text-'.$EstiloTexto.' bg-'.$tipo_panel.'" style="'.$css_personalizado.'">
-            <div class="card-header">'.$titulo;
-        if ($barra_herramientas!='')
-            echo $barra_herramientas;
+            <div  class="card">
+            <div class="card-header text-'.$EstiloTexto.' bg-'.$EstiloPanel.'" >'.$titulo;
+                if ($barra_herramientas!='')
+                    echo $barra_herramientas;
         echo '</div>
-            <div class="card-body">';
+            <div class="card-body bg-'.$FondoPanel.'">';
     }
 
 
@@ -3996,10 +3972,10 @@ function PCO_AbrirVentana($titulo,$tipo_panel="panel-default",$css_personalizado
 /* ################################################################## */
 /*
 	Function: PCO_CerrarVentana
-	Cierra los espacios de trabajo dinamicos generados por <abrir_ventana>	
+	Cierra los espacios de trabajo dinamicos generados por <PCO_AbrirVentana>	
 
 	Ver tambien:
-	<abrir_ventana>	
+	<PCO_AbrirVentana>	
 */
     //Funcion para compatibilidad hacia atras.  Desaparecera en la version 18.9
     function cerrar_ventana()
@@ -4007,8 +3983,8 @@ function PCO_AbrirVentana($titulo,$tipo_panel="panel-default",$css_personalizado
 function PCO_CerrarVentana()
     {
         echo '
-          </div>  <!-- CIERRA panel-body -->
-        </div>  <!-- CIERRA panel panel-default -->';
+          </div>  <!-- CIERRA card-body -->
+        </div>  <!-- CIERRA card -->';
     }
 
 
@@ -4024,7 +4000,7 @@ function PCO_CerrarVentana()
 */
 function abrir_barra_estado($DEPRECATED_alineacion="CENTER")
     {
-        echo '<div class="panel-footer">';
+        echo '<div class="card-footer">';
     }
 
 
@@ -4040,7 +4016,7 @@ function abrir_barra_estado($DEPRECATED_alineacion="CENTER")
 */
 function cerrar_barra_estado()
   {
-        echo '</div> <!-- CIERRA panel-footer -->';
+        echo '</div> <!-- CIERRA card-footer -->';
   }
 
 
@@ -4055,10 +4031,6 @@ function cerrar_barra_estado()
     
     titulo - Nombre de la ventana a visualizar en la parte superior.
     tipo_panel - Recibe el tipo de panel bootstrap a crear: 
-    
-    * panel-primary,panel-success,panel-info,panel-warning,panel-danger
-    * col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-
-    * Otros asociados a clases de bootstrap
     
     Ver tambien:
     <cerrar_modal>
@@ -6076,7 +6048,7 @@ function PCO_CargarFormulario($formulario,$en_ventana=1,$PCO_CampoBusquedaBD="",
             }
 		
 		// Crea ventana si aplica para el form
-		if ($en_ventana) abrir_ventana(PCO_ReemplazarVariablesPHPEnCadena($registro_formulario["titulo"]).$ComplementoTituloFormulario.$ComplementoIdObjetoEnTitulo,'panel-primary','',$barra_herramientas_mini);
+		if ($en_ventana) PCO_AbrirVentana(PCO_ReemplazarVariablesPHPEnCadena($registro_formulario["titulo"]).$ComplementoTituloFormulario.$ComplementoIdObjetoEnTitulo,'secondary','CSSPersonalizado',$barra_herramientas_mini);
 		// Muestra ayuda en caso de tenerla
 		$imagen_ayuda='fa fa-info-circle fa-5x texto-azul';
 		if ($registro_formulario["ayuda_titulo"]!="" || $registro_formulario["ayuda_texto"]!="")
@@ -6525,7 +6497,7 @@ function PCO_CargarFormulario($formulario,$en_ventana=1,$PCO_CampoBusquedaBD="",
         $POSTForm_ListaCamposObligatorios.=$ListaCamposObligatorios;
         $POSTForm_ListaTitulosObligatorios.=$ListaTitulosObligatorios;
         
-        if ($en_ventana) cerrar_ventana();
+        if ($en_ventana) PCO_CerrarVentana();
   }
 
 
@@ -7134,7 +7106,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
 							}
 
 						//Carga la ventana con el informe
-						abrir_ventana($TituloVentanaInforme.$ComplementoIdObjetoEnTitulo,'panel panel-info',$registro_informe["ancho"]);
+						PCO_AbrirVentana($TituloVentanaInforme.$ComplementoIdObjetoEnTitulo,'secondary',$registro_informe["ancho"]);
 						
 						//Agrega la descripcion del informe en caso de contar con ella
 						if ($registro_informe["descripcion"]!='')
@@ -7490,7 +7462,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
 					
 			} // Fin si informe es G (grafico)
 
-		if ($en_ventana) cerrar_ventana();
+		if ($en_ventana) PCO_CerrarVentana();
 
         //Si el usuario es admin le muestra el query generador.
         if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario) && $ModoDepuracion)

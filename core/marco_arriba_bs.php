@@ -55,8 +55,9 @@
             {
                 echo '<link href="inc/bootstrap/css/tema_'.$Tema_PracticoFramework.'.min.css" rel="stylesheet" id="tema-base-bootstrap" media="screen">';
                 //Si el tema es el predeterminado conserva efectos de controles en versiones previas a 17.4-001
-                if ($Tema_PracticoFramework=="bootstrap")
-                    echo '<link href="inc/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"  media="screen">';
+                //BS4
+                //if ($Tema_PracticoFramework=="bootstrap")
+                //    echo '<link href="inc/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"  media="screen">';
             }
         else
             {
@@ -102,7 +103,7 @@
     ?>
 
     <!-- Custom Fonts -->
-    <link href="inc/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="inc/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" type="text/css">
     <link href="inc/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css">
     <link href="inc/octicons/octicons.css" rel="stylesheet" type="text/css">
     <link href="inc/typicons/typicons.css" rel="stylesheet" type="text/css">

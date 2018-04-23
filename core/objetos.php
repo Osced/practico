@@ -756,7 +756,7 @@ $salida=sprintf("<?php
 
 			if ($mensaje_error=="")
 				{
-				    abrir_ventana($MULTILANG_FrmTipoCopiaExporta, 'panel-primary');
+				    PCO_AbrirVentana($MULTILANG_FrmTipoCopiaExporta);
 				    echo $MULTILANG_FrmCopiaFinalizada."<hr>"; 
 				    
                     $ArregloElementosExportacion=PCO_ParsearListasElementos($ListaElementos);
@@ -802,8 +802,8 @@ $salida=sprintf("<?php
             			<br><br>
             			<a class="btn btn-default" href="javascript:document.core_ver_menu.submit();"><i class="fa fa-home"></i> <?php echo $MULTILANG_IrEscritorio; ?></a>
             			</div>
-                    <?php
-                        cerrar_ventana();
+                <?php
+                    PCO_CerrarVentana();
 				}
 			else
 				{

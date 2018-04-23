@@ -203,7 +203,7 @@
 */
 	if ($PCO_Accion=="Mensaje_cierre_sesion")
 	{
-		abrir_ventana($MULTILANG_Atencion, 'panel-primary');
+		PCO_AbrirVentana($MULTILANG_Atencion);
 			echo '<strong><font size="3">'.$MULTILANG_SesionCerrada.'</font>
 			<table class="table"><tr>
 				<td class="texto-gris">
@@ -220,5 +220,5 @@
                 <a class="btn btn-info" href="javascript:document.Again.submit();"><i class="fa fa-refresh fa-spin"></i> '.$MULTILANG_Ingresar.'</a>
 			</form></center>';
 		@session_destroy();
-		cerrar_ventana();
+		PCO_CerrarVentana();
 	}
